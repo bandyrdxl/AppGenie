@@ -1,9 +1,3 @@
-// Fake users for login (You can integrate this with a backend)
-const users = [
-    { email: 'user1@example.com', password: 'password123' },
-    { email: 'user2@example.com', password: 'password456' }
-];
-
 // Login function
 function login() {
     const email = document.getElementById('email').value;
