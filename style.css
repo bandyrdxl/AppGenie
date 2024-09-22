@@ -6,7 +6,6 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    /* You can use Google Fonts to load this font */
     background: url('1.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #333;
@@ -101,7 +100,7 @@ textarea {
 }
 
 #googleSignInButton button:hover {
-    background-color: whitesmoke;
+    background-color: #e0e0e0;
 }
 
 #googleSignInButton img {
@@ -110,7 +109,6 @@ textarea {
     vertical-align: middle;
 }
 
-
 /* Center the login form */
 .login-container {
     display: flex;
@@ -118,47 +116,4 @@ textarea {
     justify-content: center;
     align-items: center;
     height: 100%;
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    /* Adjust space between form and Google button */
-}
-
-.login-box {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 300px;
-}
-
-.login-box h2 {
-    margin-bottom: 20px;
-}
-
-.login-box input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.login-box button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.login-box button:hover {
-    background-color: #45a049;
 }

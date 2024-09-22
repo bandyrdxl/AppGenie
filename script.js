@@ -9,7 +9,7 @@ const firebaseConfig = {
     measurementId: "G-BJFF3VJKJ0"
 };
 
-// Initialize Firebase using compatibility mode
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 // Google Sign-in
@@ -21,7 +21,8 @@ function signInWithGoogle() {
             displayUserInfo(user);
         })
         .catch((error) => {
-            console.log(error);
+            console.log(error.message);
+            document.getElementById('loginError').textContent = 'Google Sign-In failed. Please try again!';
         });
 }
 
@@ -33,6 +34,8 @@ function displayUserInfo(user) {
         <img src="${user.photoURL}" width="100" height="100"/>
         <p>Email: ${user.email}</p>
     `;
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('ideaSection').style.display = 'block';
 }
 
 // Email/Password Login
@@ -48,7 +51,7 @@ function login() {
         })
         .catch((error) => {
             document.getElementById('loginError').textContent = 'Invalid credentials. Try again!';
-            console.error(error);
+            console.error(error.message);
         });
 }
 
