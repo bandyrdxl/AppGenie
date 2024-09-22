@@ -15,18 +15,19 @@ firebase.initializeApp(firebaseConfig);
 // Google Sign-in
 function signInWithGoogle() {
     var provider = new firebase.auth.GoogleAuthProvider();
+
     firebase.auth().signInWithPopup(provider)
         .then((result) => {
             const user = result.user;
-            displayUserInfo(user);
+            displayUserInfo(user); // Display user info on successful login
         })
         .catch((error) => {
-            console.log(error.message);
-            document.getElementById('loginError').textContent = 'Google Sign-In failed. Please try again!';
+            console.error("Error during Google Sign-in: ", error.message);
+            document.getElementById('loginError').textContent = 'Google login failed. Try again.';
         });
 }
 
-// Display user info after Google login
+// Display user info after login
 function displayUserInfo(user) {
     const userInfo = document.getElementById('user-info');
     userInfo.innerHTML = `
@@ -34,8 +35,6 @@ function displayUserInfo(user) {
         <img src="${user.photoURL}" width="100" height="100"/>
         <p>Email: ${user.email}</p>
     `;
-    document.getElementById('loginSection').style.display = 'none';
-    document.getElementById('ideaSection').style.display = 'block';
 }
 
 // Email/Password Login
@@ -50,8 +49,8 @@ function login() {
             document.getElementById('ideaSection').style.display = 'block';
         })
         .catch((error) => {
+            console.error("Error during Email/Password login: ", error.message);
             document.getElementById('loginError').textContent = 'Invalid credentials. Try again!';
-            console.error(error.message);
         });
 }
 
@@ -71,7 +70,7 @@ function submitIdea() {
     document.getElementById('ideaSection').style.display = 'none';
     document.getElementById('appPreview').style.display = 'block';
 
-    // Generate a basic app based on the idea (in real scenario, this would be more complex)
+    // Generate a basic app based on the idea
     document.getElementById('generatedApp').textContent = `App generated based on the idea: "${appIdea}"`;
 
     // Clear input
