@@ -89,8 +89,8 @@ textarea {
 }
 
 #googleSignInButton button {
-    background-color: #4285F4;
-    color: white;
+    background-color: whitesmoke;
+    color: black;
     border: none;
     border-radius: 5px;
     padding: 10px;
@@ -101,7 +101,7 @@ textarea {
 }
 
 #googleSignInButton button:hover {
-    background-color: #357ae8;
+    background-color: whitesmoke;
 }
 
 #googleSignInButton img {
@@ -114,10 +114,17 @@ textarea {
 /* Center the login form */
 .login-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 100%;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    /* Adjust space between form and Google button */
 }
 
 .login-box {

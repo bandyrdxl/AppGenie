@@ -283,13 +283,8 @@ textarea {
             }
 
 </script>
+<div>
 
-<div id="googleSignInButton">
-    <button type="button" onclick="signInWithGoogle()">
-        <img src="2.webp" alt="Google Logo">
-        Sign in with Google
-    </button>
-</div>
 
     <div class="container">
         <div class="login-container">
@@ -302,7 +297,12 @@ textarea {
             <button type="submit">Login</button>
             <p id="loginError" class="error-msg"></p>
         </div>
-
+        <div id="googleSignInButton">
+            <button type="button" onclick="signInWithGoogle()">
+                <img src="2.webp" alt="Google Logo">
+                Sign in with Google
+            </button>
+        </div>
         <!-- Idea Input Section -->
         <div class="idea-section" id="ideaSection" style="display:none;">
             <h2>Submit Your App Idea</h2>
@@ -321,7 +321,7 @@ textarea {
         </div>
         </div>
         </div>
-
+    </div>
     <script src="script.js"></script>
     <style src="style.css"></style>
 
