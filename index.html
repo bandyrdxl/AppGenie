@@ -5,54 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AppGenie - Idea to App</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
-    <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
 
 <body>
-    <div>
-        <div class="container">
-            <div class="login-container">
+    <div class="container">
+        <div class="login-container">
 
-                <!-- Login Section -->
-                <div class="login-section" id="loginSection">
-                    <h2>Login to AppGenie</h2>
-                    <input type="email" placeholder="Email" required>
-                    <input type="password" placeholder="Password" required>
-                    <button type="submit">Login</button>
-                    <p id="loginError" class="error-msg"></p>
-                </div>
-                <div id="googleSignInButton">
-                    <button type="button" onclick="signInWithGoogle()">
-                        <img src="2.webp" alt="Google Logo">
-                        Sign in with Google
-                    </button>
-                </div>
-                <!-- Idea Input Section -->
-                <div class="idea-section" id="ideaSection" style="display:none;">
-                    <h2>Submit Your App Idea</h2>
-                    <textarea id="appIdea" placeholder="Describe your app idea..."></textarea>
-                    <button onclick="submitIdea()">Submit Idea</button>
-                    <p id="ideaError" class="error-msg"></p>
-                </div>
+            <!-- Login Section -->
+            <div class="login-section" id="loginSection">
+                <h2>Login to AppGenie</h2>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit" onclick="login()">Login</button>
+                <p id="loginError" class="error-msg"></p>
+            </div>
 
-                <!-- Generated App Preview -->
-                <div class="app-preview" id="appPreview" style="display:none;">
-                    <h2>Your App Preview</h2>
-                    <p id="generatedApp"></p>
-                    <button onclick="exportApp()">Export App</button>
-                </div>
+            <!-- Google Sign-in Button -->
+            <div id="googleSignInButton">
+                <button type="button" onclick="signInWithGoogle()">
+                    <img src="2.webp" alt="Google Logo" width="20" height="20">
+                    Sign in with Google
+                </button>
+            </div>
+
+            <!-- Idea Input Section -->
+            <div class="idea-section" id="ideaSection" style="display:none;">
+                <h2>Submit Your App Idea</h2>
+                <textarea id="appIdea" placeholder="Describe your app idea..."></textarea>
+                <button onclick="submitIdea()">Submit Idea</button>
+                <p id="ideaError" class="error-msg"></p>
+            </div>
+
+            <!-- Generated App Preview -->
+            <div class="app-preview" id="appPreview" style="display:none;">
+                <h2>Your App Preview</h2>
+                <p id="generatedApp"></p>
+                <button onclick="exportApp()">Export App</button>
             </div>
         </div>
     </div>
-    </div>
-    </div>
-
 </body>
 
 </html>

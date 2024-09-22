@@ -1,11 +1,48 @@
-// Login function for email and password
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyDVT35NCi2rj-gcR-PUtta2iHMDHQS4GE4",
+    authDomain: "appgenie-ec349.firebaseapp.com",
+    projectId: "appgenie-ec349",
+    storageBucket: "appgenie-ec349.appspot.com",
+    messagingSenderId: "1061756824620",
+    appId: "1:1061756824620:web:f985eced7bda224bc07589",
+    measurementId: "G-BJFF3VJKJ0"
+};
+
+// Initialize Firebase using compatibility mode
+firebase.initializeApp(firebaseConfig);
+
+// Google Sign-in
+function signInWithGoogle() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+        .then((result) => {
+            const user = result.user;
+            displayUserInfo(user);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
+// Display user info after Google login
+function displayUserInfo(user) {
+    const userInfo = document.getElementById('user-info');
+    userInfo.innerHTML = `
+        <h3>Welcome, ${user.displayName}</h3>
+        <img src="${user.photoURL}" width="100" height="100"/>
+        <p>Email: ${user.email}</p>
+    `;
+}
+
+// Email/Password Login
 function login() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
-            // Hide login section and show idea section
+            const user = userCredential.user;
             document.getElementById('loginSection').style.display = 'none';
             document.getElementById('ideaSection').style.display = 'block';
         })
@@ -31,67 +68,14 @@ function submitIdea() {
     document.getElementById('ideaSection').style.display = 'none';
     document.getElementById('appPreview').style.display = 'block';
 
-    // Generate a basic app based on the idea
+    // Generate a basic app based on the idea (in real scenario, this would be more complex)
     document.getElementById('generatedApp').textContent = `App generated based on the idea: "${appIdea}"`;
 
     // Clear input
     document.getElementById('appIdea').value = '';
 }
 
-// Function to handle export app
+// Function to handle export app (You can add download logic or API call to generate code here)
 function exportApp() {
     alert('App has been exported (this is a placeholder for future functionality)');
-}
-
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyDVT35NCi2rj-gcR-PUtta2iHMDHQS4GE4",
-    authDomain: "appgenie-ec349.firebaseapp.com",
-    projectId: "appgenie-ec349",
-    storageBucket: "appgenie-ec349.appspot.com",
-    messagingSenderId: "1061756824620",
-    appId: "1:1061756824620:web:f985eced7bda224bc07589",
-    measurementId: "G-BJFF3VJKJ0"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-const auth = firebase.auth();
-const loginBtn = document.getElementById('login-btn');
-const userInfo = document.getElementById('user-info');
-
-// Google Login
-loginBtn.addEventListener('click', () => {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider)
-        .then(result => {
-            const user = result.user;
-            displayUserInfo(user);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-});
-
-// Display user info after login
-function displayUserInfo(user) {
-    userInfo.innerHTML = `
-        <h3>Welcome, ${user.displayName}</h3>
-        <img src="${user.photoURL}" width="100" height="100"/>
-        <p>Email: ${user.email}</p>
-    `;
-}
-
-// Function to sign in with Google
-function signInWithGoogle() {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider)
-        .then((result) => {
-            var token = result.credential.accessToken;
-            var user = result.user;
-            console.log(user);
-        }).catch((error) => {
-            console.error(error);
-        });
 }
