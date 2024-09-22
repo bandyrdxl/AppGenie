@@ -1,16 +1,18 @@
-// Login function
+// Login function for email and password
 function login() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    const user = users.find(user => user.email === email && user.password === password);
-
-    if (user) {
-        document.getElementById('loginSection').style.display = 'none';
-        document.getElementById('ideaSection').style.display = 'block';
-    } else {
-        document.getElementById('loginError').textContent = 'Invalid credentials. Try again!';
-    }
+    firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            // Hide login section and show idea section
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('ideaSection').style.display = 'block';
+        })
+        .catch((error) => {
+            document.getElementById('loginError').textContent = 'Invalid credentials. Try again!';
+            console.error(error);
+        });
 }
 
 // Function to handle app idea submission
@@ -29,19 +31,19 @@ function submitIdea() {
     document.getElementById('ideaSection').style.display = 'none';
     document.getElementById('appPreview').style.display = 'block';
 
-    // Generate a basic app based on the idea (in real scenario, this would be more complex)
+    // Generate a basic app based on the idea
     document.getElementById('generatedApp').textContent = `App generated based on the idea: "${appIdea}"`;
 
     // Clear input
     document.getElementById('appIdea').value = '';
 }
 
-// Function to handle export app (You can add download logic or API call to generate code here)
+// Function to handle export app
 function exportApp() {
     alert('App has been exported (this is a placeholder for future functionality)');
 }
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDVT35NCi2rj-gcR-PUtta2iHMDHQS4GE4",
     authDomain: "appgenie-ec349.firebaseapp.com",
@@ -75,12 +77,13 @@ loginBtn.addEventListener('click', () => {
 // Display user info after login
 function displayUserInfo(user) {
     userInfo.innerHTML = `
-                <h3>Welcome, ${user.displayName}</h3>
-                <img src="${user.photoURL}" width="100" height="100"/>
-                <p>Email: ${user.email}</p>
-            `;
+        <h3>Welcome, ${user.displayName}</h3>
+        <img src="${user.photoURL}" width="100" height="100"/>
+        <p>Email: ${user.email}</p>
+    `;
 }
 
+// Function to sign in with Google
 function signInWithGoogle() {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
