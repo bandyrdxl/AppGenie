@@ -53,31 +53,3 @@ function login() {
             document.getElementById('loginError').textContent = 'Invalid credentials. Try again!';
         });
 }
-
-// Function to handle app idea submission
-function submitIdea() {
-    const appIdea = document.getElementById('appIdea').value;
-
-    if (appIdea === "") {
-        document.getElementById('ideaError').textContent = 'Please describe your app idea.';
-        return;
-    }
-
-    // Clear errors
-    document.getElementById('ideaError').textContent = '';
-
-    // Display generated app section
-    document.getElementById('ideaSection').style.display = 'none';
-    document.getElementById('appPreview').style.display = 'block';
-
-    // Generate a basic app based on the idea
-    document.getElementById('generatedApp').textContent = `App generated based on the idea: "${appIdea}"`;
-
-    // Clear input
-    document.getElementById('appIdea').value = '';
-}
-
-// Function to handle export app (You can add download logic or API call to generate code here)
-function exportApp() {
-    alert('App has been exported (this is a placeholder for future functionality)');
-}
